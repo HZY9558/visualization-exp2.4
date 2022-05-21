@@ -42,7 +42,7 @@
       </svg>
     </div>
     <div>
-      <h2>Areas: profit of all categories</h2>
+      <h2>Areas</h2>
       <svg id="Map"></svg>
     </div>
     <div>
@@ -194,17 +194,9 @@
       var profitMap = d3.index(mapData, function (d) {
         return d.name; //name为关键字，映射利润实体
       });
-
-
-      var maxProfit = d3.max(mapData, function (d) {
-        return +d.profit;
-      });
-      console.log(profitMap);
-      console.log("maxProfit:" + maxProfit);
       var title = "profit (w)";
 
       // 绘制地图区域
-      // var color = d3.scaleQuantize([0, 7], d3.interpolateRdBu[6]);
       var color = d3.scaleDiverging() // 生成颜色映射
         .domain([-5, 0, 5])
         .interpolator(d3.interpolateRdBu);
