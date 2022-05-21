@@ -81,27 +81,27 @@
         return d.subCategory;
       });
       console.log(nestBySubCategory);
-    });
 
-    nestBySubCategory.forEach(function (item, index, array) { //第一层循环,读取0-16个数组
-      var sumProfit = 0;
-      var sumSales = 0;
-      item[1].forEach(function (d) {      //第二层循环，对数值累加
-        sumProfit += d.profit;
-        sumSales += d.sales;
-      })
-      barData.push({            //将加过的结果放入bardata中
-        subCategory: item[0],
-        profit: sumProfit,
-        sales: sumSales
+      nestBySubCategory.forEach(function (item, index, array) { //第一层循环,读取0-16个数组
+        var sumProfit = 0;
+        var sumSales = 0;
+        item[1].forEach(function (d) {      //第二层循环，对数值累加
+          sumProfit += d.profit;
+          sumSales += d.sales;
+        });
+        barData.push({            //将加过的结果放入bardata中
+          subCategory: item[0],
+          profit: sumProfit,
+          sales: sumSales
+        });
       });
-    })
-    console.log(barData);
+      console.log(barData);
 
-    // 转换为映射表形式，方便后续快速检索指定类别
-    nestBySubCategory = d3.group(dataUS, d => d.subCategory)
-    console.log(nestBySubCategory);    //注意groups和group的区别
-    drawBarChart(); // 根据barData来绘制柱状图
+      // 转换为映射表形式，方便后续快速检索指定类别
+      nestBySubCategory = d3.group(dataUS, d => d.subCategory)
+      console.log(nestBySubCategory);    //注意groups和group的区别
+      drawBarChart(); // 根据barData来绘制柱状图
+    });
 
     // drawBarChart() 绘制
     function drawBarChart() {
